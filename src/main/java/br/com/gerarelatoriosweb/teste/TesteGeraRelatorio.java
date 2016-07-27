@@ -6,11 +6,15 @@
 package br.com.gerarelatoriosweb.teste;
 
 import br.com.gerarelatoriosweb.dao.ContaDAO;
+import br.com.gerarelatoriosweb.dao.ProjetoDAO;
 import br.com.gerarelatoriosweb.modelo.Conta;
+import br.com.gerarelatoriosweb.modelo.OS;
+import br.com.gerarelatoriosweb.modelo.OSRelatorio;
 import br.com.gerarelatoriosweb.util.JPAutil;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,25 +35,66 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
  */
 public class TesteGeraRelatorio {
 
+    /*public static void main(String[] args) throws SQLException, JRException, ClassNotFoundException, FileNotFoundException {
+    EntityManager manager = new JPAutil().getEntityManager();
+    
+    ContaDAO dao = new ContaDAO();
+    
+    JasperCompileManager.compileReportToFile("/home/touti/NetBeansProjects/gera-relatorios-web/src/main/java/br/com/gerarelatoriosweb/jasper/contas.jrxml");
+    
+    Map<String, Object> params = new HashMap();
+    
+    List<Conta> listaContas = new ContaDAO().getListFromConta();
+    
+    JRDataSource dataSource = new JRBeanCollectionDataSource(listaContas, false);
+    
+    JasperPrint jasperPrint = JasperFillManager.fillReport("/home/touti/NetBeansProjects/gera-relatorios-web/src/main/java/br/com/gerarelatoriosweb/jasper/contas.jasper", params, dataSource);
+    
+    JRExporter exporter = new JRPdfExporter();
+    
+    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream("contas.pdf"));
+    
+    exporter.exportReport();
+    
+    System.out.println("PDF gerado com sucesso!");
+    }*/
+    
     public static void main(String[] args) throws SQLException, JRException, ClassNotFoundException, FileNotFoundException {
         EntityManager manager = new JPAutil().getEntityManager();
 
-        ContaDAO dao = new ContaDAO();
+        ProjetoDAO dao = new ProjetoDAO();
 
-        JasperCompileManager.compileReportToFile("/home/touti/NetBeansProjects/gera-relatorios-web/src/main/java/br/com/gerarelatoriosweb/jasper/contas.jrxml");
+        JasperCompileManager.compileReportToFile("/home/touti/NetBeansProjects/gera-relatorios-web/src/main/java/br/com/gerarelatoriosweb/jasper/OS.jrxml");
 
         Map<String, Object> params = new HashMap();
+        
+        params.put("TITLE", "Relatório de Ordem de Serviços");
+        params.put("HEADER_1", "Agendamento da OS");
+        params.put("HEADER_2", "Criação da OS");
+        params.put("HEADER_3", "Direcionamento da OS");
+        params.put("HEADER_4", "Execução da OS");
+        params.put("HEADER_5", "Finalização da OS");
+        params.put("HEADER_6", "Liberação da OS");
+        params.put("HEADER_7", "Nome");
 
-        List<Conta> listaContas = new ContaDAO().getListFromConta();
+        List<OS> listaOS = dao.getListaOS();
+        List<OSRelatorio> listaOSRelatorio = new ArrayList<OSRelatorio>();
+        
+        for(OS os : listaOS){
+            listaOSRelatorio.add(new OSRelatorio(os));
+        }
+        
+        System.out.println(listaOS.size());
 
-        JRDataSource dataSource = new JRBeanCollectionDataSource(listaContas, false);
+        JRDataSource dataSource = new JRBeanCollectionDataSource(listaOSRelatorio, false);
 
-        JasperPrint jasperPrint = JasperFillManager.fillReport("/home/touti/NetBeansProjects/gera-relatorios-web/src/main/java/br/com/gerarelatoriosweb/jasper/contas.jasper", params, dataSource);
+        JasperPrint jasperPrint = JasperFillManager.fillReport("/home/touti/NetBeansProjects/gera-relatorios-web/src/main/java/br/com/gerarelatoriosweb/jasper/OS.jasper", params, dataSource);
 
         JRExporter exporter = new JRPdfExporter();
 
         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream("contas.pdf"));
+        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream("OS.pdf"));
 
         exporter.exportReport();
 
