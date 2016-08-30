@@ -5,18 +5,16 @@
  */
 package br.com.gerarelatoriosweb.modelo;
 
-
 /**
  *
  * @author byron
  */
 public enum UnidadesEnum {
 
-    Pct("enum.pct"), Mt("enum.mt");
+    Pct("enum.pct"), 
+    Mt("enum.mt");
 
     private String item;
-
-  
 
     private UnidadesEnum(String item) {
         this.item = item;
@@ -25,9 +23,7 @@ public enum UnidadesEnum {
     public void setItem(String item) {
         this.item = item;
     }
-      
-    
-    
+
     public String getItem() {
         return this.item;
     }

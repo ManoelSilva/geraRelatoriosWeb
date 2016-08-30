@@ -20,7 +20,12 @@
             <artifactId>jasperreports</artifactId>
             <version>6.3.0</version>
         </dependency>
-        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.1.Final</version>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -44,6 +49,14 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>2.4.7</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>fonte</groupId>
+            <artifactId>fonte</artifactId>
+            <version>0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/lib/fonte.jar</systemPath>
         </dependency>
 
 

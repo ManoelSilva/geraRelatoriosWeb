@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioSugestao_subreport2" pageWidth="255" pageHeight="62" whenNoDataType="AllSectionsNoDetail" columnWidth="0" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="64fec320-b553-4583-88aa-48fbb51d407e">
+	<property name="ireport.zoom" value="2.483685292236621"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="fieldsZebrados" mode="Opaque" backcolor="#FFFFFF">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style mode="Opaque" backcolor="#C0C0C0" pattern=""/>
+		</conditionalStyle>
+	</style>
+	<style name="headersCinza" mode="Opaque" backcolor="#808080" fill="Solid"/>
+	<parameter name="HEADER_1" class="java.lang.String"/>
+	<parameter name="HEADER_2" class="java.lang.String"/>
+	<parameter name="TITLE_1" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="headersCinza" x="0" y="-1" width="255" height="20" uuid="a245259c-facd-4ebe-a2ee-934a489485fa">
+					<property name="TITLE_1" value="$P{TITLE_1}"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITLE_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="255" height="1" uuid="a3817f3e-55b0-43dd-96df-84fb1fac5009"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="255" height="20" backcolor="#C0C0C0" uuid="a185f81d-a9cb-4062-8ca9-3fda3dac69da"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="127" height="20" uuid="7270a378-8b7c-4c8f-846f-ede83ea5738c"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HEADER_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="127" y="0" width="127" height="20" uuid="a0f85a63-7240-4f2a-88fe-06aba26b5107"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HEADER_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="127" y="0" width="127" height="20" uuid="7cf4a68f-6a57-4b95-893c-c792a538e90a"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="127" height="20" uuid="4db0ead5-48e8-4799-829f-ea01c7025665"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

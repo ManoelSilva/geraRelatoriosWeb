@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioSugestao_subreport5" pageWidth="255" pageHeight="61" whenNoDataType="AllSectionsNoDetail" columnWidth="0" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b6d1e1b8-9588-447a-8979-8e6d7852e109">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="headersCinza" mode="Opaque" backcolor="#808080" fill="Solid"/>
+	<parameter name="TITLE_4" class="java.lang.String"/>
+	<parameter name="HEADER_4" class="java.lang.String"/>
+	<parameter name="HEADER_5" class="java.lang.String"/>
+	<field name="produto" class="java.lang.String"/>
+	<field name="quantidade" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement style="headersCinza" x="0" y="0" width="255" height="20" uuid="4a9f1299-162b-483c-b632-40038bdca425"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITLE_4}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="255" height="1" uuid="f1c67ca5-cd59-4073-912d-8f535b20ae9d"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="255" height="20" backcolor="#C0C0C0" uuid="e2ed7fdd-1bd3-41a8-9ae8-1078cbc5130d"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="127" height="20" uuid="19feef03-296d-459e-ad6b-3aee7d8e3336"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HEADER_5}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="127" y="0" width="127" height="20" uuid="b195f051-a0c6-4abf-82d2-e7eee1051d92"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HEADER_4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="127" height="20" uuid="5d1a1776-4d70-49dd-a103-5751c8d7990a"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement x="127" y="0" width="127" height="20" uuid="4ec9a731-ccb4-47f8-8b1d-e5698b8391fd"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

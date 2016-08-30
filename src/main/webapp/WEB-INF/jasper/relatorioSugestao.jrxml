@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioSugestao" pageWidth="255" pageHeight="567" columnWidth="0" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8341031b-ab7b-4ab8-9f10-60180dabf775">
+	<property name="ireport.zoom" value="1.7715610000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="fieldsZebrados" mode="Opaque" backcolor="#FFFFFF">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style mode="Opaque" backcolor="#C0C0C0"/>
+		</conditionalStyle>
+	</style>
+	<style name="headersCinza" mode="Opaque" backcolor="#808080" fill="Solid"/>
+	<parameter name="TITLE" class="java.lang.String"/>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/touti/NetBeansProjects/gera-relatorios-web/target/gera-relatorios-web-1.0-SNAPSHOT/WEB-INF/jasper/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="subreport_datasource" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="subreport_datasource_2" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="TITLE_1" class="java.lang.String"/>
+	<parameter name="HEADER_1" class="java.lang.String"/>
+	<parameter name="HEADER_2" class="java.lang.String"/>
+	<parameter name="TITLE_2" class="java.lang.String"/>
+	<parameter name="HEADER_3" class="java.lang.String"/>
+	<parameter name="subreport_datasource_3" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="parameter_1" class="java.lang.String"/>
+	<parameter name="parameter_2" class="java.lang.String"/>
+	<parameter name="parameter_3" class="java.lang.String"/>
+	<parameter name="PAGE" class="java.lang.String"/>
+	<parameter name="OF" class="java.lang.String"/>
+	<parameter name="TITLE_3" class="java.lang.String"/>
+	<parameter name="HEADER_4" class="java.lang.String"/>
+	<parameter name="subreport_datasource_4" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="TITLE_4" class="java.lang.String"/>
+	<parameter name="HEADER_5" class="java.lang.String"/>
+	<parameter name="subreport_datasource_5" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<field name="dataAgendamento" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataCriacao" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataDirecionamento" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataExecucao" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataFinalizacao" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataLiberacao" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="headersCinza" x="0" y="55" width="255" height="15" forecolor="#000000" uuid="e539d948-94f0-460b-bb48-c8da0bd0f7b1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITLE}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="62" height="55" uuid="593c6f45-e76c-4383-b3f6-8ce0ff8068e0"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="70">
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="0" y="0" width="255" height="70" uuid="d6f94bb2-c3c8-475d-821e-06e880d3d5ef"/>
+				<subreportParameter name="parameter_1">
+					<subreportParameterExpression><![CDATA[$P{parameter_1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="parameter_2">
+					<subreportParameterExpression><![CDATA[$P{parameter_2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="parameter_3">
+					<subreportParameterExpression><![CDATA[$P{parameter_3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{subreport_datasource}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioSugestao_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="70">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="0" width="255" height="70" uuid="634b140c-dae7-4343-8854-f345fc19dbdc"/>
+				<subreportParameter name="HEADER_1">
+					<subreportParameterExpression><![CDATA[$P{HEADER_1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TITLE_1">
+					<subreportParameterExpression><![CDATA[$P{TITLE_1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HEADER_2">
+					<subreportParameterExpression><![CDATA[$P{HEADER_2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{subreport_datasource_2}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioSugestao_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="70">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="0" width="255" height="70" uuid="b47a417f-0d94-4e34-b6b0-4c7f8fe7eff5"/>
+				<subreportParameter name="HEADER_1">
+					<subreportParameterExpression><![CDATA[$P{HEADER_1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TITLE_2">
+					<subreportParameterExpression><![CDATA[$P{TITLE_2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HEADER_3">
+					<subreportParameterExpression><![CDATA[$P{HEADER_3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{subreport_datasource_3}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioSugestao_subreport3.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="70">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="0" width="255" height="70" uuid="03bb1e1b-8d43-4aa6-962d-971e345ee84b"/>
+				<subreportParameter name="TITLE_3">
+					<subreportParameterExpression><![CDATA[$P{TITLE_3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HEADER_3">
+					<subreportParameterExpression><![CDATA[$P{HEADER_3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HEADER_4">
+					<subreportParameterExpression><![CDATA[$P{HEADER_4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{subreport_datasource_4}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioSugestao_subreport4.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="70">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="0" width="255" height="70" uuid="c34e8525-1093-493e-bce7-9822112c775d"/>
+				<subreportParameter name="TITLE_4">
+					<subreportParameterExpression><![CDATA[$P{TITLE_4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HEADER_4">
+					<subreportParameterExpression><![CDATA[$P{HEADER_4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HEADER_5">
+					<subreportParameterExpression><![CDATA[$P{HEADER_5}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{subreport_datasource_5}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioSugestao_subreport5.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="240" y="20" width="15" height="20" uuid="708b05e1-40fe-44a4-a780-b95538412602"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="195" y="20" width="45" height="20" uuid="601c7e29-b442-4496-8ad0-4c405ddfa701"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PAGE} + $V{PAGE_NUMBER} + $P{OF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="40" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="255" height="1" uuid="4ff5247b-b50d-48cd-b254-631f44f73385"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="1" width="255" height="39" uuid="b62aca5b-5756-49df-917f-953e2a6370d6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[© OkaWorks – http://www.okaworks.com.br
+MasterPlan - Versão: 2.0.1]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
