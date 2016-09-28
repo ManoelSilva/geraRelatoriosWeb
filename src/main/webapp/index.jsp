@@ -16,7 +16,9 @@
         <nav>
             <p><a href="sugestaoMaterial.jsp">Relatório Sugestão de Material</a></p>
             <p><a href="estoqueTecnico.jsp">Relatório de Estoque de Técnico</a></p>
+            <p><a href="estoqueGeral.jsp">Relatório de Estoque Geral</a></p>
             <p><a href="rota.jsp">Relatório de Rota</a></p>
+            <p><a href="multa.jsp">Relatório de Multas</a></p>
         </nav>
     </body>
 </html>

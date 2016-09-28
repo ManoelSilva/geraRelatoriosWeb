@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioMultas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="06b20db2-322c-4252-8dda-d85bf9895cd2">
+	<property name="ireport.zoom" value="1.2100000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="headersCinza" mode="Opaque" backcolor="#808080" fill="Solid"/>
+	<parameter name="HEADER_1" class="java.lang.String"/>
+	<parameter name="HEADER_2" class="java.lang.String"/>
+	<parameter name="PAGE" class="java.lang.String"/>
+	<parameter name="OF" class="java.lang.String"/>
+	<parameter name="GROUPFOOTER_MSG" class="java.lang.String"/>
+	<parameter name="HEADER_3" class="java.lang.String"/>
+	<parameter name="TITLE" class="java.lang.String"/>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<parameter name="SUMMARY_MSG" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="valor" class="java.math.BigDecimal"/>
+	<field name="data" class="java.util.Date"/>
+	<variable name="valor_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<variable name="valor_2" class="java.math.BigDecimal" resetType="Group" resetGroup="por_funcionario" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<variable name="valor_3" class="java.math.BigDecimal" resetType="Group" resetGroup="por_funcionario" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<variable name="valor_4" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<group name="por_funcionario">
+		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+		<groupFooter>
+			<band height="35">
+				<textField isStretchWithOverflow="true">
+					<reportElement style="headersCinza" x="0" y="0" width="370" height="35" backcolor="#C0C0C0" uuid="b48a971b-cf00-4d37-a83d-d456d0b2de27"/>
+					<textElement>
+						<font fontName="Calibri" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{GROUPFOOTER_MSG}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="headersCinza" x="369" y="0" width="185" height="35" backcolor="#C0C0C0" uuid="7b7bceb5-fe32-48ec-af1f-b435625b467e"/>
+					<textElement textAlignment="Center">
+						<font fontName="Calibri" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{valor_3}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="71" uuid="3877931a-1e1d-4ef0-93a4-9ce3346ab169"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement mode="Opaque" x="0" y="71" width="555" height="32" forecolor="#000000" backcolor="#808080" uuid="f1f4cb02-084a-43e4-926e-59afe0783046"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITLE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="102" width="555" height="1" uuid="2d40810d-5b7f-46d1-8209-42b846cbe98e"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="headersCinza" x="1" y="0" width="185" height="35" backcolor="#C0C0C0" uuid="f58e3a61-9cf0-46c0-bc44-cbb9defc83e5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HEADER_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="headersCinza" x="369" y="0" width="185" height="35" backcolor="#C0C0C0" uuid="6d49c65f-b29d-4be9-a1b0-370ec68b48b0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HEADER_3}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="headersCinza" x="184" y="0" width="185" height="35" backcolor="#C0C0C0" uuid="57746de9-d9a6-477c-852f-d35f037e086c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HEADER_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="185" height="35" uuid="6b4f0ffa-2415-49ed-b190-3dbc9956c0e2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="369" y="0" width="185" height="35" uuid="efd9926d-da29-4a2c-aa59-ef65a4f4df02"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement x="186" y="0" width="185" height="35" uuid="908b6c0d-228a-4fbd-bc31-985e680d9bad"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="35" splitType="Stretch">
+			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="529" y="0" width="25" height="35" uuid="cbc218dd-9d27-4f65-bcf1-3907e26af2f7"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="393" y="0" width="136" height="35" uuid="66623cea-9d09-44f7-9748-d64593b03ca4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PAGE} + $V{PAGE_NUMBER} + $P{OF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="70">
+			<staticText>
+				<reportElement x="1" y="35" width="555" height="35" uuid="35810359-dcaa-4e6a-878b-55602afc804c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[© OkaWorks – http://www.okaworks.com.br
+MasterPlan - Versão: 2.0.1]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="35" width="555" height="1" uuid="f192062d-b0e1-4429-938e-3fc68552c00a"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="393" y="0" width="136" height="35" uuid="4ef27b78-e700-4bc4-8a04-44b740b23dc9"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PAGE} + $V{PAGE_NUMBER} + $P{OF}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="529" y="0" width="25" height="35" uuid="27afc620-7763-42a8-87c0-c0547b4164fb"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="35">
+			<textField>
+				<reportElement x="369" y="0" width="185" height="35" backcolor="#C0C0C0" uuid="072258e8-67d7-4751-a5db-c7c36e76fe68"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{valor_4}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="1" y="0" width="370" height="35" backcolor="#C0C0C0" uuid="4439b296-0fb8-4dc1-9832-4e3af9a5fe84"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SUMMARY_MSG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioRota" pageWidth="255" pageHeight="567" whenNoDataType="AllSectionsNoDetail" columnWidth="0" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8341031b-ab7b-4ab8-9f10-60180dabf775">
 	<property name="ireport.zoom" value="2.5937424601000023"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="116"/>
+	<property name="ireport.y" value="127"/>
 	<style name="fieldsZebrados" mode="Opaque" backcolor="#FFFFFF">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
@@ -115,19 +115,33 @@
 			</textField>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="40" splitType="Stretch">
-			<line>
-				<reportElement x="0" y="0" width="255" height="1" uuid="4ff5247b-b50d-48cd-b254-631f44f73385"/>
-			</line>
+	<lastPageFooter>
+		<band height="60">
 			<staticText>
-				<reportElement x="0" y="1" width="255" height="39" uuid="b62aca5b-5756-49df-917f-953e2a6370d6"/>
+				<reportElement x="0" y="21" width="255" height="39" uuid="3fb364b1-2106-4113-9e2d-6d2f7563a4c3"/>
 				<textElement textAlignment="Center">
 					<font fontName="Calibri"/>
 				</textElement>
 				<text><![CDATA[© OkaWorks – http://www.okaworks.com.br
 MasterPlan - Versão: 2.0.1]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="255" height="1" uuid="0a048da1-45ee-4566-b6b0-230c92319f42"/>
+			</line>
+			<textField>
+				<reportElement x="195" y="0" width="45" height="20" uuid="a09afd5f-97f4-4563-9177-7141e03ff13e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PAGE} + $V{PAGE_NUMBER} + $P{OF}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="240" y="0" width="15" height="20" uuid="637b6ef6-d464-4568-9f64-2c9152c1365d"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
 		</band>
-	</summary>
+	</lastPageFooter>
 </jasperReport>
