@@ -22,8 +22,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "tbmulta")
 public class Multa implements Serializable {
 
-    private static final long serialVersionUID = 2806421523585360625L;
-
     @Id
     @GeneratedValue
     private int id;
