@@ -25,7 +25,6 @@ import javax.persistence.Table;
 @Table(name = "tbestoqueusuario")
 public class EstoqueUsuario implements Serializable {
 
-    private static final long serialVersionUID = 2806421523585360625L;
     @Id
     @GeneratedValue
     private int id;
