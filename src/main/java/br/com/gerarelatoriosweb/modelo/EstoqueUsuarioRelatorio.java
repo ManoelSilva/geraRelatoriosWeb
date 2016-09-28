@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * @author touti
  */
 public class EstoqueUsuarioRelatorio {
-    EstoqueUsuario estoqueUsuario;
+    private EstoqueUsuario estoqueUsuario;
     
     public EstoqueUsuarioRelatorio(EstoqueUsuario estoqueUsuario){
         this.estoqueUsuario = estoqueUsuario;

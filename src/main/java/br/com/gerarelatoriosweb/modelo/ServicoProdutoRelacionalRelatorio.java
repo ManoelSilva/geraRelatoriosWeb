@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  */
 public class ServicoProdutoRelacionalRelatorio {
 
-    ServicoProdutoRelacional relacional;
+    private ServicoProdutoRelacional relacional;
     
     private OS os;
 

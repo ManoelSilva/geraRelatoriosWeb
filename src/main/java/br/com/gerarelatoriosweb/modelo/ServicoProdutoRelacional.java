@@ -38,8 +38,6 @@ public class ServicoProdutoRelacional implements Serializable {
     public void setHabilitado(boolean habilitado) {
         this.habilitado = habilitado;
     }
-    
-    
 
     public Integer getId() {
         return id;
@@ -56,9 +54,6 @@ public class ServicoProdutoRelacional implements Serializable {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
-   
-  
 
     public Servicos getServico() {
         return servico;

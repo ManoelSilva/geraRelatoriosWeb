@@ -6,11 +6,16 @@
 package br.com.gerarelatoriosweb.dao;
 
 import br.com.gerarelatoriosweb.factory.ConnectionFactory;
+import br.com.gerarelatoriosweb.modelo.Erro;
+import br.com.gerarelatoriosweb.modelo.Estoque;
+import br.com.gerarelatoriosweb.modelo.EstoqueRelatorio;
 import br.com.gerarelatoriosweb.modelo.EstoqueUsuario;
 import br.com.gerarelatoriosweb.modelo.EstoqueUsuarioRelatorio;
 import br.com.gerarelatoriosweb.modelo.Funcionario;
 import br.com.gerarelatoriosweb.modelo.ItensOrdemServico;
 import br.com.gerarelatoriosweb.modelo.ItensOrdemServicoRelatorio;
+import br.com.gerarelatoriosweb.modelo.Multa;
+import br.com.gerarelatoriosweb.modelo.MultaRelatorio;
 import br.com.gerarelatoriosweb.modelo.OS;
 import br.com.gerarelatoriosweb.modelo.Produto;
 import br.com.gerarelatoriosweb.modelo.Rota;
@@ -18,6 +23,7 @@ import br.com.gerarelatoriosweb.modelo.ServicoProdutoRelacional;
 import br.com.gerarelatoriosweb.modelo.ServicoProdutoRelacionalRelatorio;
 import br.com.gerarelatoriosweb.modelo.Servicos;
 import br.com.gerarelatoriosweb.modelo.Tecnico;
+import br.com.gerarelatoriosweb.modelo.Vistoria;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,19 +55,19 @@ public class RelatorioDAO {
                     + "inner join tbfuncionario funcionario on tecnico.funcionario_id = funcionario.id "
                     + "where tecnico.idSky = ?;");
             stmt.setInt(1, tecnicoId);
-            
+
             List<ItensOrdemServicoRelatorio> listaItensOsRelatorio = new ArrayList<ItensOrdemServicoRelatorio>();
             ItensOrdemServicoRelatorio itensOsRelatorio = null;
             ItensOrdemServico itensOS = null;
             Rota rota = null;
             Tecnico tecnico = null;
             Funcionario funcionario = null;
-            ResultSet rs = stmt.executeQuery();
 
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Calendar rotaData = Calendar.getInstance();
                 rotaData.setTime(rs.getDate("data"));
-                
+
                 Integer rotaId = rs.getInt("id");
 
                 String tecnicoNome = rs.getString("nome");
@@ -81,7 +87,7 @@ public class RelatorioDAO {
                 itensOS = new ItensOrdemServico();
                 itensOS.setRota(rota);
                 itensOS.setTecnico(tecnico);
-                
+
                 itensOsRelatorio = new ItensOrdemServicoRelatorio(itensOS);
 
                 listaItensOsRelatorio.add(itensOsRelatorio);
@@ -108,8 +114,8 @@ public class RelatorioDAO {
             ItensOrdemServico itensOS = null;
             OS os = null;
             Servicos servicos = null;
-            ResultSet rs = stmt.executeQuery();
 
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Integer osID = rs.getInt("OS");
                 String nome = rs.getString("Serviço");
@@ -123,7 +129,7 @@ public class RelatorioDAO {
                 itensOS = new ItensOrdemServico();
                 itensOS.setOrdens(os);
                 itensOS.setServico(servicos);
-                
+
                 itensOsRelatorio = new ItensOrdemServicoRelatorio(itensOS);
                 osLista.add(itensOsRelatorio);
             }
@@ -203,7 +209,6 @@ public class RelatorioDAO {
             List<ServicoProdutoRelacionalRelatorio> produtosLista = new ArrayList<ServicoProdutoRelacionalRelatorio>();
 
             ResultSet rs = stmt.executeQuery();
-
             while (rs.next()) {
                 String nome = rs.getString("Material");
 
@@ -215,7 +220,7 @@ public class RelatorioDAO {
                 relacional = new ServicoProdutoRelacional();
                 relacional.setProduto(produto);
                 relacional.setQuantidade(quantidade);
-                
+
                 relacionalRelatorio = new ServicoProdutoRelacionalRelatorio(relacional);
                 produtosLista.add(relacionalRelatorio);
             }
@@ -244,8 +249,8 @@ public class RelatorioDAO {
             Tecnico tecnico = null;
             Funcionario funcionario = null;
             Produto produto = null;
-            ResultSet rs = stmt.executeQuery();
 
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String nomeProduto = rs.getString("Equipamento");
                 produto = new Produto();
@@ -276,7 +281,7 @@ public class RelatorioDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public List<EstoqueUsuarioRelatorio> getListaEstoqueDoTecnico() throws SQLException {
         try {
             PreparedStatement stmt = this.conexao.prepareStatement("select funcionario.nome as Nome, produtos.nome as Equipamento, "
@@ -291,8 +296,8 @@ public class RelatorioDAO {
             Tecnico tecnico = null;
             Funcionario funcionario = null;
             Produto produto = null;
-            ResultSet rs = stmt.executeQuery();
 
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String nomeProduto = rs.getString("Equipamento");
                 produto = new Produto();
@@ -314,6 +319,99 @@ public class RelatorioDAO {
 
                 estoqueUsuarioRelatorio = new EstoqueUsuarioRelatorio(estoqueUsuario);
                 lista.add(estoqueUsuarioRelatorio);
+            }
+
+            rs.close();
+            stmt.close();
+            return lista;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<EstoqueRelatorio> getListaEstoqueGeral() {
+        try {
+            PreparedStatement stmt = this.conexao.prepareStatement("select produtos.nome, estoques.estoque from tbestoque estoques"
+                    + " inner join tbprodutos produtos on estoques.produto_id = produtos.id;");
+            List<EstoqueRelatorio> lista = new ArrayList<EstoqueRelatorio>();
+            EstoqueRelatorio estoqueRelatorio = null;
+            Estoque estoque = null;
+            Produto produto = null;
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String nomeProduto = rs.getString("nome");
+                produto = new Produto();
+                produto.setNome(nomeProduto);
+
+                BigDecimal quantidadeEstoque = rs.getBigDecimal("estoque");
+                estoque = new Estoque();
+                estoque.setEstoque(quantidadeEstoque);
+                estoque.setProduto(produto);
+
+                estoqueRelatorio = new EstoqueRelatorio(estoque);
+                lista.add(estoqueRelatorio);
+            }
+
+            rs.close();
+            stmt.close();
+            return lista;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<MultaRelatorio> getListaMultas(String dataIni, String dataFim) {
+        try {
+            PreparedStatement stmt = this.conexao.prepareStatement("select funcionario.nome, erro.valor, vistoria.data from tbmulta multa"
+                    + " inner join tbvistoria vistoria on multa.vistoria_id = vistoria.id"
+                    + " inner join tberro erro on multa.erro_id = erro.id"
+                    + " inner join tbos os on vistoria.os_id = os.id"
+                    + " inner join tbtecnico tecnico on os.tecnico_id = tecnico.id"
+                    + " inner join tbfuncionario funcionario on tecnico.funcionario_id = funcionario.id"
+                    + " where vistoria.data between (str_to_date(?, '%d/ %m/ %Y')) and (str_to_date(?, '%d/ %m/ %Y'))"
+                    + " order by funcionario.nome;");
+            stmt.setString(1, dataIni);
+            stmt.setString(2, dataFim);
+
+            List<MultaRelatorio> lista = new ArrayList<MultaRelatorio>();
+            MultaRelatorio multaRelatorio = null;
+            Multa multa = null;
+            Vistoria vistoria = null;
+            Erro erro = null;
+            OS os = null;
+            Tecnico tecnico = null;
+            Funcionario funcionario = null;
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String nomeFuncionario = rs.getString("nome");
+                funcionario = new Funcionario();
+                funcionario.setNome(nomeFuncionario);
+
+                tecnico = new Tecnico();
+                tecnico.setFuncionario(funcionario);
+
+                os = new OS();
+                os.setTecnico(tecnico);
+
+                BigDecimal valor = rs.getBigDecimal("valor");
+                erro = new Erro();
+                erro.setValor(valor);
+
+                Calendar rotaData = Calendar.getInstance();
+                rotaData.setTime(rs.getDate("data"));
+
+                vistoria = new Vistoria();
+                vistoria.setData(rotaData);
+                vistoria.setOs(os);
+
+                multa = new Multa();
+                multa.setErro(erro);
+                multa.setVistoria(vistoria);
+
+                multaRelatorio = new MultaRelatorio(multa);
+                lista.add(multaRelatorio);
             }
 
             rs.close();

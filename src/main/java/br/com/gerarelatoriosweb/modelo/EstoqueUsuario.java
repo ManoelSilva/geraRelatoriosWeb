@@ -22,19 +22,20 @@ import javax.persistence.Table;
  * @author byron
  */
 @Entity
-@Table(name="tbestoqueusuario")
-public class EstoqueUsuario implements Serializable{
-private static final long serialVersionUID = 2806421523585360625L;    
-@Id
-@GeneratedValue
-private int id;
-private BigDecimal estoque;
-@OneToOne
-private Produto produto;
-@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-private List<EstoqueSerial> seriais;
-@OneToOne
-private Usuario usuario;
+@Table(name = "tbestoqueusuario")
+public class EstoqueUsuario implements Serializable {
+
+    private static final long serialVersionUID = 2806421523585360625L;
+    @Id
+    @GeneratedValue
+    private int id;
+    private BigDecimal estoque;
+    @OneToOne
+    private Produto produto;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<EstoqueSerial> seriais;
+    @OneToOne
+    private Tecnico tecnico;
 
     public List<EstoqueSerial> getSeriais() {
         return seriais;
@@ -44,15 +45,13 @@ private Usuario usuario;
         this.seriais = seriais;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Tecnico getTecnico() {
+        return tecnico;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
     }
-
-
 
     public int getId() {
         return id;
@@ -77,6 +76,5 @@ private Usuario usuario;
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
 
 }
